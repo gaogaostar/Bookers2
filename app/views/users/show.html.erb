@@ -1,34 +1,9 @@
 <h1>Users#show</h1>
 
 <!--User info-->
-<h2>User info</h2>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <table>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </table>
-
 <!--プロフィール編集ボタン-->
-<div>
-  <% if @user.id == current_user.id %>
-    <%= link_to edit_user_path(@user) do %>
-      <i class="fa-solid fa-user-gear"></i>
-    <% end %>
-  <% else %>
-    <%= link_to user_path(current_user.id) do %>
-      <i class="fa-solid fa-user-gear"></i>
-    <% end %>
-  <% end %>
-</div>
-
 <!--New book-->
-<%= render 'books/new_book', newbook: @newbook %>
+<%= render 'user_info', user: @user, newbook: @newbook%>
 
 
 <!--そのユーザーの投稿一覧[Books]-->

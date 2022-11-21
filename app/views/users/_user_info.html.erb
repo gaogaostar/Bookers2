@@ -14,7 +14,23 @@
 
 <!--プロフィール編集ボタン-->
 <div>
-  <%= link_to edit_user_path(user) do %>
-    <i class="fa-solid fa-user-gear"></i>
+  <% if user.id == current_user.id %>
+    <%= link_to edit_user_path(user.id) do %>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
+  <% else %>
+    <%= link_to user_path(current_user.id) do %>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
   <% end %>
 </div>
+
+<!--New book-->
+<h2>New book</h2>
+  <%= form_with model: newbook do |f| %>
+    <h4>Title</h4>
+      <%= f.text_field :title %>
+    <h4>Opinion</h4>
+      <%= f.text_area :body %><br>
+    <%= f.submit 'Create Book' %>
+  <% end %>
