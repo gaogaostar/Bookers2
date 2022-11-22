@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:success] %>
+</div>
+
 <h1>books#show</h1>
 
 <!--User info-->
@@ -23,13 +27,13 @@
         <td><%= @book.body %></td>
         <td>
           <!--Editボタン-->
-          <% if @book.user == current_user %>
+          <% if @book.user.id == current_user.id %>
             <%= link_to "Edit", edit_book_path(@book.id) %></td>
           <% end %>
         <td>
           <!--Destroyボタン-->
           <% if @book.user == current_user %>
-            <%= link_to "Destroy", book_path(@book), method: :delete %>
+            <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？"%>
           <% end %>
         </td>
       </tr>
