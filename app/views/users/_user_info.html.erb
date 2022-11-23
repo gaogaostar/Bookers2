@@ -1,36 +1,38 @@
 <!--User info-->
 <h2>User info</h2>
   <%= image_tag user.get_profile_image(100,100) %>
-  <table>
-    <tr>
-      <th>name</th>
-      <th><%= user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= user.introduction %></th>
-    </tr>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
   </table>
-
-<!--プロフィール編集ボタン-->
-<div>
-  <% if user.id == current_user.id %>
-    <%= link_to edit_user_path(user.id) do %>
-      <i class="fa-solid fa-user-gear"></i>
+<br>
+  <!--プロフィール編集ボタン-->
+  <div class="row">
+    <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
     <% end %>
-  <% else %>
-    <%= link_to user_path(current_user.id) do %>
-      <i class="fa-solid fa-user-gear"></i>
-    <% end %>
-  <% end %>
-</div>
+  </div>
 
-<!--New book-->
-<h2>New book</h2>
-  <%= form_with model: newbook do |f| %>
-    <h4>Title</h4>
-      <%= f.text_field :title %>
-    <h4>Opinion</h4>
-      <%= f.text_area :body %><br>
-    <%= f.submit 'Create Book' %>
-  <% end %>
+  <!--New book-->
+  <h2 class="mt-3">New book</h2>
+    <%= form_with model: newbook do |f| %>
+      <div class="form-group">
+        <label for="book_title">Title</label><br>
+          <%= f.text_field :title, class:"form-control book_title" %>
+      </div>
+      <div class="form-group">
+        <label for="book_opinion">Opinion</label><br>
+          <%= f.text_area :body, class:"form-control book_body" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Create Book', class:"btn btn-success" %>
+      </div>
+    <% end %>
